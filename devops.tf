@@ -239,7 +239,7 @@ stage {
     job {
       name = "Create Ingress"
       steps {
-        # Add ingress creation command step here
+        #  ingress creation command step here
         step {
           task = "Kubernetes@1"
           inputs = {

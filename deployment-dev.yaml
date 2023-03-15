@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bmprojectdev
+  namespace: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bmprojectdev
+  template:
+    metadata:
+      labels:
+        app: bmprojectdev
+    spec:
+      containers:
+      - name: bmprojectdev
+        image: https://hub.docker.com/repository/docker/sentinelwawesh/spring-boot-docker:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bmprojectdev-service
+  namespace:  prod
+spec:
+  selector:
+    app: bmprojectdev
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: ClusterIP
+---

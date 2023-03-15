@@ -1,0 +1,29 @@
+trigger: none
+
+pool:
+  vmImage: 'centos-latest'
+
+steps:
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sentinelwawesh-sonarqube-service'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'spring-boot-app'
+    cliProjectName: 'spring-boot-docker'
+    cliSources: '<C:\Users\Sentinel\Desktop\BM\spring-boot-docker-master\spring-boot-app>'
+    extraProperties: |
+      sonar.host.url=https://sentinewawesh.sonarqube.com
+      sonar.login=<hidden for security >
+  displayName: 'Prepare analysis'
+
+- script: |
+    echo 'Running SonarQube analysis...'
+    # Replace this command with the analysis tool appropriate for your codebase
+    sonar-scanner
+  displayName: 'Run SonarQube analysis'
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
+  displayName: 'Publish analysis'

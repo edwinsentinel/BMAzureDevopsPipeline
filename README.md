@@ -5,7 +5,7 @@ Code to to dockerize a simple spring boot  application and deploy it on a Kube
 ![image](https://user-images.githubusercontent.com/7680114/225522100-f16db34b-27e8-4ded-b18e-2ba12e947a42.png)
 
 
-Purpose:
+**Purpose:**
 By following this repository you can able to setup a DevOps CI/CD Pipeline using
 
 -git
